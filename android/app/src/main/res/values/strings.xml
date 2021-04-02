@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Classroom Vue</string>
+    <string name="title_activity_main">Classroom Vue</string>
+    <string name="package_name">me.taylorbeck.classroomvue</string>
+    <string name="custom_url_scheme">me.taylorbeck.classroomvue</string>
+</resources>
