@@ -1,15 +1,19 @@
 {
-  "name": "ionic-vue-placeholder",
+  "name": "ionic-vue-project",
   "version": "0.0.1",
+  "versionCodename": "Longclaw",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "serve-dev": "ionic serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@capacitor/android": "2.4.7",
     "@capacitor/core": "2.4.7",
+    "@capacitor/ios": "2.4.7",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
     "core-js": "^3.6.5",
@@ -28,5 +32,5 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0"
   },
-  "description": "An Ionic project"
+  "description": "A classroom student manager for teachers."
 }
