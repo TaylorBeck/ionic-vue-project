@@ -1,21 +1,24 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import Home from '../views/Home.vue'
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+import UsersPage from "../pages/UsersPage.vue";
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home'
+    path: "/",
+    redirect: "/users"
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: "/users",
+    component: UsersPage
+  },
+  {
+    path: "/users/:id",
+    component: () => import("../pages/UserDetailsPage.vue")
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
