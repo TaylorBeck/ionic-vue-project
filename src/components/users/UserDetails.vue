@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card v-if="user !== undefined">
     <img :src="user.imageUrl" :alt="user.name" />
     <ion-card-header>
       <ion-card-subtitle>{{ user.profession.toUpperCase() }}</ion-card-subtitle>
@@ -11,8 +11,8 @@
     <ion-card-content v-if="user.allergies.length > 0">
       <ion-card-subtitle>Allergies</ion-card-subtitle>
       <allergy-chip
-        v-for="allergy in user.allergies"
-        :key="allergy.id"
+        v-for="(allergy, index) in user.allergies"
+        :key="index + 1"
         :allergy="allergy"
       ></allergy-chip>
     </ion-card-content>

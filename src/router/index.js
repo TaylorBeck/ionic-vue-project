@@ -13,6 +13,10 @@ const routes = [
   {
     path: "/users/:id",
     component: () => import("../pages/UserDetailsPage.vue")
+  },
+  {
+    path: "/users/create",
+    component: () => import("../pages/CreateUserPage.vue")
   }
 ];
 
