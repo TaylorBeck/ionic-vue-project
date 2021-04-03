@@ -41,7 +41,7 @@ import {
 } from "@ionic/vue";
 import { camera } from "ionicons/icons";
 
-import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import { Plugins, CameraResultType } from "@capacitor/core";
 const { Camera } = Plugins;
 
 export default {
