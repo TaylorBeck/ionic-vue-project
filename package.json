@@ -16,6 +16,7 @@
     "@capacitor/ios": "2.4.7",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
+    "@vue/cli-service": "^4.5.12",
     "core-js": "^3.6.5",
     "uuid": "^8.3.2",
     "vue": "^3.0.0-0",
@@ -27,7 +28,6 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0-0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0"
