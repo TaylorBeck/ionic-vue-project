@@ -27,7 +27,7 @@ import {
   IonCardSubtitle,
   IonCardContent,
 } from "@ionic/vue";
-import AllergyChip from "./allergies/AllergyChip.vue";
+import AllergyChip from "../allergies/AllergyChip.vue";
 export default {
   props: ["user"],
   components: {
