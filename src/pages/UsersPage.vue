@@ -2,10 +2,10 @@
   <base-layout page-title="Users">
     <template v-slot:actions-end>
       <ion-button router-link="/users/create">
-        <ion-icon :icon="personAddOutline"></ion-icon>
+        <ion-icon :icon="personAddOutline" color="light"></ion-icon>
       </ion-button>
     </template>
-    <users-list :users="users" class="ion-padding"></users-list>
+    <users-list :users="users" class="ion-padding-top"></users-list>
   </base-layout>
 </template>
 

@@ -26,6 +26,9 @@ import "./theme/variables.css";
 import "./theme/core.css";
 import BaseLayout from "./components/base/BaseLayout.vue";
 
+/* Progressive Web App Elements */
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
@@ -36,3 +39,6 @@ app.component("base-layout", BaseLayout);
 router.isReady().then(() => {
   app.mount("#app");
 });
+
+// Call the element loader after the app has been rendered the first time
+defineCustomElements(window);

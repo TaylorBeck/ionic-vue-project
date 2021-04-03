@@ -4,8 +4,9 @@ process.env.VUE_APP_VERSION = version;
 process.env.VUE_APP_DESCRIPTION = description;
 process.env.VUE_APP_CODENAME = versionCodename;
 
+const publicPort = `classroom-manager-vue-ionic.herokuapp.com:${process.env.PORT}`;
 module.exports = {
   devServer: {
-    public: 'classroom-manager-vue-ionic.herokuapp.com:8100'
+    public: publicPort
   }
 };
