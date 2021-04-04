@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { v4 as uuidv4 } from "uuid";
+import VuexPersistence from "vuex-persist";
 
 import STUDENTS from "../data/students";
 import { getRandomAllergy } from "../helpers";
@@ -12,6 +13,7 @@ const store = createStore({
       isUpdating: false
     };
   },
+  plugins: [new VuexPersistence().plugin],
   mutations: {
     createStudent(state, studentData) {
       const newStudent = {
