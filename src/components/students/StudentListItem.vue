@@ -1,14 +1,14 @@
 <template>
   <ion-item
-    v-if="user !== undefined"
-    :router-link="`/users/${user.id}`"
+    v-if="student !== undefined"
+    :router-link="`/students/${student.id}`"
     detail="true"
   >
     <ion-thumbnail slot="start">
-      <ion-img :src="user.imageUrl" :alt="user.name"></ion-img>
+      <ion-img :src="student.imageUrl" :alt="student.name"></ion-img>
     </ion-thumbnail>
     <ion-label>
-      {{ user.name }}
+      {{ student.name }}
     </ion-label>
   </ion-item>
 </template>
@@ -16,7 +16,7 @@
 <script>
 import { IonItem, IonThumbnail, IonImg, IonLabel } from "@ionic/vue";
 export default {
-  props: ["user"],
+  props: ["student"],
   components: {
     IonItem,
     IonThumbnail,

@@ -1,17 +1,17 @@
 <template>
-  <ion-card v-if="user !== undefined">
-    <img :src="user.imageUrl" :alt="user.name" />
+  <ion-card v-if="student !== undefined" size="auto">
+    <img :src="student.imageUrl" :alt="student.name" />
     <ion-card-header>
-      <ion-card-subtitle>{{ user.profession.toUpperCase() }}</ion-card-subtitle>
-      <ion-card-title>{{ user.name }}</ion-card-title>
+      <ion-card-subtitle>{{ student.profession.toUpperCase() }}</ion-card-subtitle>
+      <ion-card-title>{{ student.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      {{ user.bio }}
+      {{ student.bio }}
     </ion-card-content>
-    <ion-card-content v-if="user.allergies.length > 0">
+    <ion-card-content v-if="student.allergies.length > 0">
       <ion-card-subtitle>Allergies</ion-card-subtitle>
       <allergy-chip
-        v-for="(allergy, index) in user.allergies"
+        v-for="(allergy, index) in student.allergies"
         :key="index + 1"
         :allergy="allergy"
       ></allergy-chip>
@@ -29,7 +29,7 @@ import {
 } from "@ionic/vue";
 import AllergyChip from "../allergies/AllergyChip.vue";
 export default {
-  props: ["user"],
+  props: ["student"],
   components: {
     IonCard,
     IonCardHeader,

@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
-import UsersPage from "../pages/UsersPage.vue";
+import StudentsPage from "../pages/students/StudentsPage.vue";
 
 const routes = [
   {
     path: "/",
-    redirect: "/users"
+    redirect: "/students"
   },
   {
-    path: "/users",
-    component: UsersPage
+    path: "/students",
+    component: StudentsPage
   },
   {
-    path: "/users/:id",
-    component: () => import("../pages/UserDetailsPage.vue")
+    path: "/students/:id",
+    component: () => import("../pages/students/StudentDetailsPage.vue")
   },
   {
-    path: "/users/create",
-    component: () => import("../pages/CreateUserPage.vue")
+    path: "/students/create",
+    component: () => import("../pages/students/CreateStudentPage.vue")
+  },
+  {
+    path: "/students/:id/edit",
+    component: () => import("../pages/students/EditStudentPage.vue")
   }
 ];
 
