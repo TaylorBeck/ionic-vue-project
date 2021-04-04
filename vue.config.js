@@ -8,5 +8,6 @@ const publicPort = `classroom-manager-vue-ionic.herokuapp.com:${process.env.PORT
 module.exports = {
   devServer: {
     public: publicPort
-  }
+  },
+  transpileDependencies: ['vuex-persist']
 };
