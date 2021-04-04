@@ -52,7 +52,7 @@ const { Camera } = Plugins;
 
 export default {
   props: ["student"],
-  emits: ["update-student"],
+  emits: ["edit-student"],
   components: {
     IonList,
     IonItem,

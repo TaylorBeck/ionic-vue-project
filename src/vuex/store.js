@@ -2,7 +2,6 @@ import { createStore } from "vuex";
 import { v4 as uuidv4 } from "uuid";
 
 import STUDENTS from "../data/students";
-import { BASE_URL, PUBLIC_API_KEY } from "../constants";
 import { getRandomAllergy } from "../helpers";
 
 const store = createStore({
@@ -40,34 +39,41 @@ const store = createStore({
         updatedAt: new Date().toDateString()
       };
 
-      let index = state.students.findIndex(student => student.id === studentData.id);
+      let index = state.students.findIndex(
+        (student) => student.id === studentData.id
+      );
       // Replace existing key values with updated values
       Object.assign(state.students[index], updatedStudentData);
-
-      // try {
-      //   const response = await axios.get(`${BASE_URL}?api_key=${PUBLIC_API_KEY}`);
-      //   console.log(response.data);
-      // } catch (error) {
-      //   console.log(error.message);
-      // }
     },
     setIsCreating(state, isCreating) {
-      state.isCreating = isCreating
+      state.isCreating = isCreating;
     },
     setIsUpdating(state, isUpdating) {
-      state.isUpdating = isUpdating
-    },
+      state.isUpdating = isUpdating;
+    }
   },
   actions: {
     createStudent(context, studentData) {
-      // TODO: Make POST request to create student in database
+      /* 
+        try {
+          const response = await axios.post(`${BASE_URL}/students/${studentData.id}`, studentData);
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
+      */
       context.commit("createStudent", studentData);
     },
     editStudent(context, studentData) {
+      /* 
+        try {
+          const response = await axios.put(`${BASE_URL}/students/${studentData.id}`, studentData);
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
+      */
       context.commit("editStudent", studentData);
-    },
-    deleteStudent(context, studentId) {
-
     }
   },
   getters: {
