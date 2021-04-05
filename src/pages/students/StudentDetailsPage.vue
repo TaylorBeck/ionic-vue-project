@@ -74,11 +74,7 @@ export default {
   },
   mounted() {
     const { message, type } = this.flash;
-    console.log("MESSAGE: ", message);
-    console.log("TYPE: ", type);
-
     if (message && type) {
-      console.log("MESSAGE AND TYPE, OPEN TOAST")
       this.$store.dispatch("clearFlash");
       this.openToast(message, type);
     }
