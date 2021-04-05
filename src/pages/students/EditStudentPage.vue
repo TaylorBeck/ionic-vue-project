@@ -13,7 +13,7 @@
           size-md="10"
           offset-md="1"
         >
-          <edit-student-form :student="student" @edit-student="editStudent" />
+          <edit-student-form :student="student" @edit-student="presentAlert" />
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -21,7 +21,13 @@
 </template>
 
 <script>
-import { IonGrid, IonRow, IonCol, IonBackButton } from "@ionic/vue";
+import {
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonBackButton,
+  alertController,
+} from "@ionic/vue";
 import EditStudentForm from "../../components/students/edit/EditStudentForm";
 export default {
   data() {
@@ -43,12 +49,29 @@ export default {
     IonBackButton,
   },
   methods: {
-    editStudent(studentData) {
+    async presentAlert(studentData) {
+      const alert = await alertController.create({
+        header: "Confirm Edit",
+        message: "Are you sure you? This action is permanent.",
+        buttons: [
+          {
+            text: "No",
+            role: "cancel",
+          },
+          {
+            text: "Yes",
+            handler: () => this.editStudent(studentData),
+          },
+        ],
+      });
+      return alert.present();
+    },
+    async editStudent(studentData) {
       // Dispatch editStudent action, which will mutate current student
-      this.$store.dispatch("editStudent", studentData);
+      await this.$store.dispatch("editStudent", studentData);
 
-      
-      this.$router.replace(`/students/${studentData.id}`);
+      // this.$router.replace(`/students/${studentData.id}`);
+      this.$router.go(-1);
     },
   },
   watch: {
