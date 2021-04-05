@@ -10,12 +10,12 @@
         <ion-icon :icon="personAddOutline" color="light"></ion-icon>
       </ion-button>
     </template>
-    <students-list :students="students" class="ion-padding-top"></students-list>
+    <students-list :students="myStudents" class="ion-padding-top"></students-list>
   </base-layout>
 </template>
 
 <script>
-import { IonButton, IonIcon, } from "@ionic/vue";
+import { IonButton, IonIcon } from "@ionic/vue";
 import { personAddOutline, menu } from "ionicons/icons";
 
 import StudentsList from "../../components/students/StudentsList";
@@ -26,10 +26,13 @@ export default {
     StudentsList,
   },
   data() {
-    return { personAddOutline, menu };
+    return {
+      personAddOutline,
+      menu,
+    };
   },
   computed: {
-    students() {
+    myStudents() {
       return this.$store.getters.students;
     },
   },

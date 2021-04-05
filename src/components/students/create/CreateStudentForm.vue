@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       inputName: "",
-      inputProfession: "",
+      inputGrade: "",
       inputDateOfBirth: "",
       inputBio: "",
       takenImageUrl: "https://i.ibb.co/WDrMwvK/profile-Placeholder.png",
@@ -87,7 +87,7 @@ export default {
     submitForm() {
       const studentData = {
         name: this.inputName,
-        profession: this.inputProfession,
+        grade: this.inputGrade,
         dateOfBirth: this.inputDateOfBirth,
         imageUrl: this.takenImageUrl,
         bio: this.inputBio,

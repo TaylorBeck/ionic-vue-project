@@ -1,13 +1,12 @@
 <template>
   <form class="ion-padding" @submit.prevent="submitForm">
     <ion-list>
-      <input type="hidden" v-model="inputId" />
       <ion-item>
         <ion-label position="stacked">Name</ion-label>
         <ion-input type="text" required v-model="inputName" />
       </ion-item>
-      <ion-item>
-        <ion-label class="ion-padding-top" position="stacked">Date of Birth</ion-label>
+      <ion-item class="ion-padding-top">
+        <ion-label position="stacked">Date of Birth</ion-label>
         <ion-datetime
           display-format="MM/DD/YYYY"
           min="1960-01-01"
@@ -24,12 +23,8 @@
           Take Photo
         </ion-button>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Bio</ion-label>
-        <ion-textarea rows="2" required v-model="inputBio" />
-      </ion-item>
     </ion-list>
-    <ion-button class="ion-padding-top ion-padding-bottom" type="submit" expand="block">Save</ion-button>
+    <ion-button type="submit" expand="block" class="ion-padding-top ion-padding-bottom">Sign Up</ion-button>
   </form>
 </template>
 
@@ -40,7 +35,6 @@ import {
   IonLabel,
   IonInput,
   IonDatetime,
-  IonTextarea,
   IonButton,
   IonThumbnail,
   IonIcon,
@@ -51,51 +45,55 @@ import { Plugins, CameraResultType } from "@capacitor/core";
 const { Camera } = Plugins;
 
 export default {
-  props: ["student"],
-  emits: ["edit-student"],
+  emits: ["create-teacher"],
   components: {
     IonList,
     IonItem,
     IonLabel,
     IonInput,
     IonDatetime,
-    IonTextarea,
     IonButton,
     IonThumbnail,
     IonIcon,
   },
   data() {
     return {
-      inputId: this.student.id || "",
-      inputName: this.student.name || "",
-      inputGrade: this.student.grade || "",
-      inputDateOfBirth: this.student.dateOfBirth || "",
-      inputBio: this.student.bio || "",
-      takenImageUrl: this.student.imageUrl || null,
+      inputName: "",
+      inputGrade: "",
+      inputDateOfBirth: "",
+      inputBio: "",
+      takenImageUrl: "https://i.ibb.co/WDrMwvK/profile-Placeholder.png",
       camera,
     };
   },
   methods: {
     async takePhotoClicked() {
+      // Capacitor camera plugin: https://capacitorjs.com/docs/apis/camera#example
       const image = await Camera.getPhoto({
         quality: 55,
         allowEditing: true,
         resultType: CameraResultType.Uri,
       });
 
+      // Replace the placeholder thumbnail
       this.takenImageUrl = image.webPath;
     },
     submitForm() {
       const studentData = {
-        id: this.inputId,
         name: this.inputName,
         grade: this.inputGrade,
         dateOfBirth: this.inputDateOfBirth,
         imageUrl: this.takenImageUrl,
         bio: this.inputBio,
       };
-      this.$emit("edit-student", studentData);
+      this.$emit("create-student", studentData);
     },
   },
 };
 </script>
+
+<style scoped>
+ion-textarea {
+ --background: var(--ion-color-light);
+}
+</style>
