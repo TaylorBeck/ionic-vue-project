@@ -10,7 +10,11 @@ const store = createStore({
     return {
       students: STUDENTS,
       isCreating: false,
-      isUpdating: false
+      isUpdating: false,
+      flash: {
+        type: null,
+        message: null
+      }
     };
   },
   plugins: [new VuexPersistence().plugin],
@@ -29,6 +33,8 @@ const store = createStore({
       };
 
       state.students.unshift(newStudent);
+
+      state.flash = { type: "success", message: `${newStudent.name} created.` };
     },
     editStudent(state, studentData) {
       const updatedStudentData = {
@@ -46,6 +52,14 @@ const store = createStore({
       );
       // Replace existing key values with updated values
       Object.assign(state.students[index], updatedStudentData);
+
+      state.flash = {
+        type: "success",
+        message: `${state.students[index].name} updated.`
+      };
+    },
+    clearFlash(state) {
+      state.flash = { type: null, message: null };
     },
     setIsCreating(state, isCreating) {
       state.isCreating = isCreating;
@@ -59,7 +73,7 @@ const store = createStore({
       /* 
         try {
           const response = await axios.post(`${BASE_URL}/students/${studentData.id}`, studentData);
-          console.log(response);
+          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
@@ -70,12 +84,15 @@ const store = createStore({
       /* 
         try {
           const response = await axios.put(`${BASE_URL}/students/${studentData.id}`, studentData);
-          console.log(response);
+          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
       */
       context.commit("editStudent", studentData);
+    },
+    clearFlash(context) {
+      context.commit("clearFlash");
     }
   },
   getters: {
@@ -87,6 +104,7 @@ const store = createStore({
         return state.students.find((student) => student.id === studentId);
       };
     },
+    flash: (state) => state.flash,
     isCreating: (state) => state.isCreating,
     isUpdating: (state) => state.isCreating
   }

@@ -19,7 +19,15 @@
 </template>
 
 <script>
-import { IonGrid, IonRow, IonCol, IonBackButton, IonIcon, IonButton } from "@ionic/vue";
+import {
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonBackButton,
+  IonIcon,
+  IonButton,
+  toastController,
+} from "@ionic/vue";
 import StudentDetails from "../../components/students/StudentDetails.vue";
 import { pencil } from "ionicons/icons";
 export default {
@@ -35,8 +43,18 @@ export default {
   data() {
     return {
       studentId: this.$route.params.id,
-      pencil
+      pencil,
     };
+  },
+  methods: {
+    async openToast(message, type) {
+      const toast = await toastController.create({
+        message,
+        duration: 1750,
+        color: type
+      });
+      return toast.present();
+    },
   },
   computed: {
     student() {
@@ -45,11 +63,25 @@ export default {
     editPath() {
       return `/students/${this.studentId}/edit`;
     },
+    flash() {
+      return this.$store.getters.flash;
+    }
   },
   watch: {
     $route(currentRoute) {
       this.studentId = currentRoute.params.id;
     },
+  },
+  mounted() {
+    const { message, type } = this.flash;
+    console.log("MESSAGE: ", message);
+    console.log("TYPE: ", type);
+
+    if (message && type) {
+      console.log("MESSAGE AND TYPE, OPEN TOAST")
+      this.$store.dispatch("clearFlash");
+      this.openToast(message, type);
+    }
   },
 };
 </script>
