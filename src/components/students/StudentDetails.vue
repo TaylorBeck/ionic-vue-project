@@ -1,8 +1,8 @@
 <template>
-  <ion-card v-if="student !== undefined" size="auto">
+  <ion-card v-if="student" size="auto">
     <img :src="student.imageUrl" :alt="student.name" />
     <ion-card-header>
-      <ion-card-subtitle>{{ student.profession.toUpperCase() }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ student.grade.toUpperCase() }}</ion-card-subtitle>
       <ion-card-title>{{ student.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>

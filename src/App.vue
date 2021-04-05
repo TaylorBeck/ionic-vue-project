@@ -18,5 +18,10 @@ export default defineComponent({
     IonRouterOutlet,
     TeacherTabs
   },
+  mounted() {
+    if (this.$store.getters.students.length === 0) {
+      this.$store.dispatch("setStudents");
+    }
+  }
 });
 </script>

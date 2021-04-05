@@ -1,36 +1,37 @@
 import { createStore } from "vuex";
 import { v4 as uuidv4 } from "uuid";
-import VuexPersistence from "vuex-persist";
+import { getCurrentUser, setCurrentUser } from "../capacitor/storage.js";
 
-import STUDENTS from "../data/students";
+import { firestore } from "../firebase/firebase.utils";
+import Student from "../models/student";
+
+// import STUDENTS from "../data/students";
 import { getRandomAllergy } from "../helpers";
 
 const store = createStore({
-  state() {
-    return {
-      students: STUDENTS,
-      isCreating: false,
-      isUpdating: false,
-      flash: {
-        type: null,
-        message: null
-      }
-    };
+  state: {
+    currentUser: null,
+    students: [],
+    isCreating: false,
+    isUpdating: false,
+    flash: {
+      type: null,
+      message: null
+    }
   },
-  plugins: [new VuexPersistence().plugin],
   mutations: {
     createStudent(state, studentData) {
-      const newStudent = {
+      const newStudent = new Student({
         id: uuidv4(),
         name: studentData.name,
         age: studentData.age,
-        profession: studentData.profession,
+        grade: studentData.grade,
         imageUrl: studentData.imageUrl,
         bio: studentData.bio,
         allergies: [getRandomAllergy(), getRandomAllergy()],
         createdAt: new Date().toDateString(),
         updatedAt: new Date().toDateString()
-      };
+      });
 
       state.students.unshift(newStudent);
 
@@ -41,22 +42,29 @@ const store = createStore({
         id: studentData.id,
         name: studentData.name,
         age: studentData.age,
-        profession: studentData.profession,
+        grade: studentData.grade,
         imageUrl: studentData.imageUrl,
         bio: studentData.bio,
         updatedAt: new Date().toDateString()
       };
 
-      let index = state.students.findIndex(
+      // Replace existing key values with updated values
+      let indexOfStudent = state.students.findIndex(
         (student) => student.id === studentData.id
       );
-      // Replace existing key values with updated values
-      Object.assign(state.students[index], updatedStudentData);
+      Object.assign(state.students[indexOfStudent], updatedStudentData);
 
       state.flash = {
         type: "success",
-        message: `${state.students[index].name} updated.`
+        message: `${state.students[indexOfStudent].name} updated.`
       };
+    },
+    setStudents(state, newStudents) {
+      state.students = newStudents;
+    },
+    createUser(state, userData) {
+      state.currentUser = userData;
+      setCurrentUser(userData); // Capacitor Storage
     },
     clearFlash(state) {
       state.flash = { type: null, message: null };
@@ -69,11 +77,15 @@ const store = createStore({
     }
   },
   actions: {
+    signUp(context, userData) {
+      context.commit("createUser", userData);
+    },
     createStudent(context, studentData) {
       /* 
         try {
           const response = await axios.post(`${BASE_URL}/students/${studentData.id}`, studentData);
-          console.log(response.data);
+          const data = await response.json();
+          console.log(data);
         } catch (error) {
           console.error(error);
         }
@@ -84,12 +96,28 @@ const store = createStore({
       /* 
         try {
           const response = await axios.put(`${BASE_URL}/students/${studentData.id}`, studentData);
-          console.log(response.data);
+          const data = await response.json();
+          console.log(data);
         } catch (error) {
           console.error(error);
         }
       */
       context.commit("editStudent", studentData);
+    },
+    async setStudents(context) {
+      try {
+        // Get a reference to the students table/collection
+        const studentsRef = await firestore.collection("students");
+        // Get the snapshot of the reference with .get()
+        const studentsSnapshot = await studentsRef.get();
+        // Each doc relates to a document in the students table in firestore
+        // call .data() to get fields (id, name, etc...)
+        const newStudents = studentsSnapshot.docs.map((doc) => doc.data());
+
+        context.commit("setStudents", newStudents);
+      } catch (err) {
+        alert(err.message);
+      }
     },
     clearFlash(context) {
       context.commit("clearFlash");
@@ -97,16 +125,18 @@ const store = createStore({
   },
   getters: {
     students(state) {
-      return state.students;
+      return state.students.map((studentData) => new Student(studentData));
     },
     student(state) {
       return (studentId) => {
-        return state.students.find((student) => student.id === studentId);
+        const studentData = state.students.find((student) => student.id === studentId);
+        return new Student(studentData);
       };
     },
     flash: (state) => state.flash,
     isCreating: (state) => state.isCreating,
-    isUpdating: (state) => state.isCreating
+    isUpdating: (state) => state.isCreating,
+    currentUser: () => getCurrentUser() // Capacitor Storage
   }
 });
 

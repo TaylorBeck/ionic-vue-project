@@ -68,7 +68,7 @@ export default {
     return {
       inputId: this.student.id || "",
       inputName: this.student.name || "",
-      inputProfession: this.student.profession || "",
+      inputGrade: this.student.grade || "",
       inputDateOfBirth: this.student.dateOfBirth || "",
       inputBio: this.student.bio || "",
       takenImageUrl: this.student.imageUrl || null,
@@ -89,7 +89,7 @@ export default {
       const studentData = {
         id: this.inputId,
         name: this.inputName,
-        profession: this.inputProfession,
+        grade: this.inputGrade,
         dateOfBirth: this.inputDateOfBirth,
         imageUrl: this.takenImageUrl,
         bio: this.inputBio,

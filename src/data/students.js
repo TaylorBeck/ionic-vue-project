@@ -2,8 +2,8 @@ export default [
   {
     id: "uuid1",
     name: "Britney Winters",
-    profession: "Artist",
-    
+    grade: "4th Grade",
+    dateOfBirth: "04/22/1980",
     imageUrl: "https://i.ibb.co/DW9Cr7j/image-1.jpg",
     bio:
       "Hipster-friendly gamer. Typical pop culture maven. Internet junkie. Tv ninja. Certified bacon expert.",
@@ -12,7 +12,7 @@ export default [
   {
     id: "uuid2",
     name: "Antoine Jefferson",
-    profession: "Salesperson",
+    grade: "2nd Grade",
     dateOfBirth: "02/10/2004",
     imageUrl: "https://i.ibb.co/gdFgKPS/image-2.jpg",
     bio:
@@ -22,7 +22,7 @@ export default [
   {
     id: "uuid3",
     name: "Sandra Murkel",
-    profession: "Nurse",
+    grade: "1st Grade",
     dateOfBirth: "01/01/1990",
     imageUrl: "https://i.ibb.co/4dDtkVM/image-3.jpg",
     bio:
@@ -32,7 +32,7 @@ export default [
   {
     id: "uuid4",
     name: "Whitney Webb",
-    profession: "Fisher",
+    grade: "8th Grade",
     dateOfBirth: "06/21/1977",
     imageUrl: "https://i.ibb.co/mvSxGzD/image-4.jpg",
     bio:
@@ -42,7 +42,7 @@ export default [
   {
     id: "uuid5",
     name: "Nathan Frederick",
-    profession: "Gourmet Chef",
+    grade: "1st Grade",
     dateOfBirth: "12/22/1994",
     imageUrl: "https://i.ibb.co/cvdsvnv/image-5.jpg",
     bio:
@@ -52,7 +52,7 @@ export default [
   {
     id: "uuid6",
     name: "Danielle Brown",
-    profession: "Sommelier",
+    grade: "5th Grade",
     dateOfBirth: "01/22/1988",
     imageUrl: "https://i.ibb.co/XDPyBBx/image-6.jpg",
     bio:
@@ -62,7 +62,7 @@ export default [
   {
     id: "uuid7",
     name: "Hope Turney",
-    profession: "Food Truck Owner",
+    grade: "4th Grade",
     dateOfBirth: "06/01/22",
     imageUrl: "https://i.ibb.co/mJ1x5d5/image-7.jpg",
     bio:
@@ -72,7 +72,7 @@ export default [
   {
     id: "uuid8",
     name: "Jin Nguyen",
-    profession: "4th Grade Teacher",
+    grade: "4th Grade Teacher",
     dateOfBirth: "12/22/2001",
     imageUrl: "https://i.ibb.co/ThWymsZ/image-8.jpg",
     bio:
@@ -82,7 +82,7 @@ export default [
   {
     id: "uuid9",
     name: "Anne Summers",
-    profession: "Apple Farmer",
+    grade: "7th Grade",
     dateOfBirth: "09/01/1966",
     imageUrl: "https://i.ibb.co/CMYfG1K/image-9.jpg",
     bio:
