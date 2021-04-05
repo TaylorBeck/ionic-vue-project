@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import { getCurrentUser, setCurrentUser } from "../capacitor/storage.js";
 
 import { firestore } from "../firebase/firebase.utils";
@@ -21,8 +21,11 @@ const store = createStore({
   },
   mutations: {
     createStudent(state, studentData) {
-      const newStudent = new Student({
-        id: uuidv4(),
+      // uuidv4 alternative
+      const newStudentID = `uuid${state.students.length + 1}`;
+
+      const newStudent = {
+        id: newStudentID,
         name: studentData.name,
         age: studentData.age,
         grade: studentData.grade,
@@ -31,7 +34,7 @@ const store = createStore({
         allergies: [getRandomAllergy(), getRandomAllergy()],
         createdAt: new Date().toDateString(),
         updatedAt: new Date().toDateString()
-      });
+      };
 
       state.students.unshift(newStudent);
 
