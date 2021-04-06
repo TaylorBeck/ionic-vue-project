@@ -65,7 +65,7 @@ const store = createStore({
     setStudents(state, newStudents) {
       state.students = newStudents;
     },
-    createUser(state, userData) {
+    setCurrentUser(state, userData) {
       state.currentUser = userData;
       setCurrentUser(userData); // Capacitor Storage
     },
@@ -106,6 +106,9 @@ const store = createStore({
         }
       */
       context.commit("editStudent", studentData);
+    },
+    createUser(context, userData) {
+      context.commit("setCurrentUser", userData);
     },
     async setStudents(context) {
       try {

@@ -1,5 +1,6 @@
 <template>
-  <ion-menu side="start" content-id="students-main-content">
+  <!-- menuId for activation button & content-id for router-outlet -->
+  <ion-menu side="start" content-id="main-content">
     <ion-header>
       <ion-toolbar translucent>
         <ion-title>Teaching Hub</ion-title>
@@ -8,8 +9,28 @@
     <ion-content>
       <ion-list>
         <ion-item>
-          <ion-icon name="warning" slot="start"></ion-icon>
-          <ion-label>Alerts</ion-label>
+          <ion-icon :icon="mail" slot="start"></ion-icon>
+          <ion-label>Inbox</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="barChart" slot="start"></ion-icon>
+          <ion-label>Grades</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="peopleCircle" slot="start"></ion-icon>
+          <ion-label>Faculty</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="newspaper" slot="start"></ion-icon>
+          <ion-label>News</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="construct" slot="start"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="helpCircle" slot="start"></ion-icon>
+          <ion-label>Help</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -28,12 +49,23 @@ import {
   IonIcon,
   IonLabel,
 } from "@ionic/vue";
-import { mail, warning } from "ionicons/icons";
+import {
+  mail,
+  peopleCircle,
+  barChart,
+  construct,
+  helpCircle,
+  newspaper,
+} from "ionicons/icons";
 export default {
   data() {
     return {
       mail,
-      warning,
+      peopleCircle,
+      barChart,
+      construct,
+      helpCircle,
+      newspaper,
     };
   },
   components: {
