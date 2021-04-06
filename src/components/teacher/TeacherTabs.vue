@@ -7,16 +7,16 @@
       <ion-tab tab="schedule">[SCHEDULEPAGE]</ion-tab>
     -->
     <ion-tab-bar slot="bottom" color="tertiary">
-      <ion-tab-button tab="assignments">
-        <ion-label color="light">Assignments</ion-label>
+      <ion-tab-button tab="assignments" disabled>
+        <ion-label>Assignments</ion-label>
         <ion-icon :icon="newspaper"></ion-icon>
       </ion-tab-button>
       <ion-tab-button tab="students" selected>
         <ion-label color="light">Students</ion-label>
-        <ion-icon :icon="people"></ion-icon>
+        <ion-icon :icon="people" color="light"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button tab="schedule">
-        <ion-label color="light">Schedule</ion-label>
+      <ion-tab-button tab="schedule" disabled>
+        <ion-label>Schedule</ion-label>
         <ion-icon :icon="calendar"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
