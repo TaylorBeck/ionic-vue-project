@@ -1,6 +1,4 @@
 import { createStore } from "vuex";
-// import { v4 as uuidv4 } from "uuid";
-import { getCurrentUser, setCurrentUser } from "../capacitor/storage.js";
 
 import { firestore } from "../firebase/firebase.utils";
 import Student from "../models/student";
@@ -10,7 +8,6 @@ import { getRandomAllergy } from "../helpers";
 
 const store = createStore({
   state: {
-    currentUser: null,
     students: [],
     isCreating: false,
     isUpdating: false,
@@ -65,10 +62,6 @@ const store = createStore({
     setStudents(state, newStudents) {
       state.students = newStudents;
     },
-    setCurrentUser(state, userData) {
-      state.currentUser = userData;
-      setCurrentUser(userData); // Capacitor Storage
-    },
     clearFlash(state) {
       state.flash = { type: null, message: null };
     },
@@ -80,9 +73,6 @@ const store = createStore({
     }
   },
   actions: {
-    signUp(context, userData) {
-      context.commit("createUser", userData);
-    },
     createStudent(context, studentData) {
       /* 
         try {
@@ -106,9 +96,6 @@ const store = createStore({
         }
       */
       context.commit("editStudent", studentData);
-    },
-    createUser(context, userData) {
-      context.commit("setCurrentUser", userData);
     },
     async setStudents(context) {
       try {
@@ -135,14 +122,15 @@ const store = createStore({
     },
     student(state) {
       return (studentId) => {
-        const studentData = state.students.find((student) => student.id === studentId);
-        return new Student(studentData);
+        const student = state.students.find(
+          (student) => student.id === studentId
+        );
+        return student;
       };
     },
     flash: (state) => state.flash,
     isCreating: (state) => state.isCreating,
-    isUpdating: (state) => state.isCreating,
-    currentUser: () => getCurrentUser() // Capacitor Storage
+    isUpdating: (state) => state.isCreating
   }
 });
 

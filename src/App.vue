@@ -14,7 +14,7 @@ export default defineComponent({
   name: "App",
   components: {
     IonApp,
-    TeacherTabs
+    TeacherTabs,
   },
   mounted() {
     if (this.$store.getters.students.length === 0) {

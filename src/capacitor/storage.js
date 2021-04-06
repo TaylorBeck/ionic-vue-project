@@ -2,26 +2,25 @@
 import { Plugins } from "@capacitor/core";
 const { Storage } = Plugins;
 
-export const setCurrentUser = async (userData) => {
+export const setCurrentUser = async (uuid) => {
   await Storage.set({
     key: "currentUser",
-    value: JSON.stringify(userData)
+    value: JSON.stringify(uuid)
   });
 };
 
 export const getCurrentUser = async () => {
-  const currentUserObj = await Storage.get({ key: "currentUser" });
-  const user = await JSON.parse(currentUserObj.value);
+  const user = await Storage.get({ key: "currentUser" });
 
-  return user;
+  return user.value;
 };
 
 export const createUser = async (newUser) => {
   const usersObj = await Storage.get({ key: "users" });
   const users = await JSON.parse(usersObj.value);
-
+  
   users.push(newUser);
-
+  
   await Storage.set({
     key: "users",
     value: JSON.stringify(users)
