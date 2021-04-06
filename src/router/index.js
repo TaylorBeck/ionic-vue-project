@@ -1,10 +1,18 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import StudentsPage from "../pages/students/StudentsPage.vue";
+import SignupPage from "../pages/SignupPage.vue";
+import { getCurrentUser } from "../capacitor/storage";
+
+const signupRedirectRoute = getCurrentUser ? "/students" : "/signup";
 
 const routes = [
   {
     path: "/",
-    redirect: "/students"
+    redirect: signupRedirectRoute
+  },
+  {
+    path: "/signup",
+    component: SignupPage
   },
   {
     path: "/students",
