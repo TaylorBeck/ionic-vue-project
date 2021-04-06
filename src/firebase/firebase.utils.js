@@ -30,7 +30,7 @@ export const getStudents = async () => {
 
     return students;
   } catch (err) {
-    console.error(err);
+    return err.message;
   }
 };
 
